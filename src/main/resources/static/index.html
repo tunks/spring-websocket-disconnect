@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Hello WebSocket</title>
-    <script src="sockjs-0.3.4.js"></script>
-    <script src="stomp.js"></script>
-    <script type="text/javascript">
-        function connect() {
-            var socket = new SockJS('/hello');
-            var stompClient = Stomp.over(socket);
-            stompClient.connect({}, function(frame) {
-                document.getElementById('connect').disabled = true;
-                console.log('Connected: ' + frame);
-                console.log('Lets wait until server disconnects websocket....')
-            });
-        }
-    </script>
-</head>
-<body>
-<div>
-    <div>
-        <button id="connect" onclick="connect();">Connect</button>
-    </div>
-</div>
-</body>
+    <head>
+        <title>Hello WebSocket</title>
+        <script src="sockjs-0.3.4.js"></script>
+        <script src="stomp.js"></script>
+        <script type="text/javascript">
+            function connect() {
+                var socket = new SockJS('/hello');
+                var stompClient = Stomp.over(socket);
+                stompClient.connect({}, function (frame) {
+                    document.getElementById('connect').disabled = true;
+                    console.log('Connected: ' + frame);
+                    console.log('Lets wait until server disconnects websocket....')
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <div>
+                <button id="connect" onclick="connect();">Connect</button>
+            </div>
+        </div>
+    </body>
 </html>

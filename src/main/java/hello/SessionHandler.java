@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 public class SessionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(SessionHandler.class);
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-
     private final Map<String, WebSocketSession> sessionMap = new ConcurrentHashMap<>();
 
     public SessionHandler() {

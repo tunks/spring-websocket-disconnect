@@ -9,7 +9,6 @@ import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.*;
-
 import java.util.List;
 
 @Configuration
@@ -36,7 +35,6 @@ public class WebSocketConfig extends WebSocketMessageBrokerConfigurationSupport 
         super.configureClientOutboundChannel(registration);
     }
 
-
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         super.addArgumentResolvers(argumentResolvers);
@@ -47,18 +45,20 @@ public class WebSocketConfig extends WebSocketMessageBrokerConfigurationSupport 
         super.addReturnValueHandlers(returnValueHandlers);
     }
 
-    	@Override
-	public void configureMessageBroker(MessageBrokerRegistry config) {
-		config.enableSimpleBroker("/topic");
-		config.setApplicationDestinationPrefixes("/app");
-	}
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        config.enableSimpleBroker("/topic");
+        config.setApplicationDestinationPrefixes("/app");
+       
+    }
 
-	@Override
-	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/hello").withSockJS();
-	}
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/hello").withSockJS();
+    }
 
     @Bean
+    @Override
     public WebSocketHandler subProtocolWebSocketHandler() {
         return new CustomSubProtocolWebSocketHandler(clientInboundChannel(), clientOutboundChannel());
     }
